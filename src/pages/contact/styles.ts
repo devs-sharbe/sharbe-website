@@ -39,16 +39,34 @@ export const ContactBox = styled.div`
   margin: -7.25rem auto 0;
 
   display: flex;
-  height: 500px;
 
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.08);
 `;
 
-export const ContactForm = styled.div`
+export const ContactForm = styled.form`
   background-color: ${({ theme }) => theme.contact.box_background};
   width: 700px;
   border-radius: 0.75rem 0 0 0.75rem;
   padding: 3rem 2rem;
+
+  button {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.125rem;
+    border-radius: 0.75rem;
+    background-color: ${({ theme }) => theme.contact.button_background};
+
+    color: ${({ theme }) => theme.contact.button_color};
+    font-size: 1rem;
+    font-family: ${fonts.secondary}, sans-serif;
+
+    > svg {
+      margin-left: 1rem;
+    }
+  }
 `;
 
 export const ContactFormTitleContent = styled.div`
@@ -65,11 +83,21 @@ export const ContactFormTitleContent = styled.div`
   }
 `;
 
+export const ContactFormFields = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+`;
+
 export const ContactInformation = styled.div`
+  position: relative;
+  overflow: hidden;
+
   background-color: ${({ theme }) => theme.contact.blue};
   width: 100%;
   max-width: 420px;
   padding: 3rem 2rem;
+  border-radius: 0 0.75rem 0.75rem 0;
 
   h3 {
     font-size: 1.5rem;
@@ -110,4 +138,16 @@ export const ContactInformationListItem = styled.li`
   & + li {
     margin-top: 2rem;
   }
+`;
+
+export const SharbeTechnology = styled.span`
+  color: ${({ theme }) => theme.contact.sharbe_technology};
+  font-size: 7rem;
+  font-family: ${fonts.secondary}, sans-serif;
+  font-weight: 700;
+  white-space: nowrap;
+
+  position: absolute;
+  bottom: -26px;
+  left: -24px;
 `;

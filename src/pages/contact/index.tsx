@@ -4,8 +4,13 @@ import {
   RiMailFill,
   RiWhatsappFill,
   RiInformationFill,
+  RiSendPlaneFill,
 } from 'react-icons/ri';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
+import { useCallback } from 'react';
 import { Header } from '@/components/Header';
 
 import { useTheme } from '@/hook/theme';
@@ -18,14 +23,56 @@ import {
   ContactBox,
   ContactForm,
   ContactFormTitleContent,
+  ContactFormFields,
   ContactInformation,
   ContactInformationList,
   ContactInformationListItem,
+  SharbeTechnology,
 } from './styles';
 import { Footer } from '@/components/Footer';
+import { Input } from '@/components/Form/Input';
+import { TextArea } from '@/components/Form/TextArea';
+
+interface IContactFormData {
+  name: string;
+  email: string;
+  telefone: string;
+  company: string;
+}
+
+const contactFormSchema = yup.object().shape({
+  name: yup
+    .string()
+    .required('Este campo é obrigatório')
+    .min(3, 'Mínimo de 3 caracteres'),
+  email: yup
+    .string()
+    .required('Este campo é obrigatório')
+    .email('Informe um e-mail válido'),
+  telephone: yup
+    .string()
+    .required('Este campo é obrigatório')
+    .min(10, 'Mínimo de 10 dígitos')
+    .max(11, 'Máximo de 11 dígitos'),
+});
 
 export default function Contact(): JSX.Element {
   const { themeSelected } = useTheme();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(contactFormSchema),
+  });
+
+  const handleGetInTouch: SubmitHandler<IContactFormData> = useCallback(
+    values => {
+      console.log(values);
+    },
+    [],
+  );
 
   return (
     <ThemeProvider theme={themeSelected === 'light' ? lightTheme : darkTheme}>
@@ -43,11 +90,60 @@ export default function Contact(): JSX.Element {
         </section>
 
         <ContactBox>
-          <ContactForm>
+          <ContactForm onSubmit={handleSubmit(handleGetInTouch)}>
             <ContactFormTitleContent>
               <h3>Envie-nos uma mensagem</h3>
               <RiMailSendFill size="30" />
             </ContactFormTitleContent>
+
+            <ContactFormFields>
+              <Input
+                {...register('name')}
+                name="name"
+                label="Nome*"
+                placeholder="Digite seu nome"
+                error={errors.name}
+              />
+              <Input
+                {...register('email')}
+                name="email"
+                label="E-mail*"
+                placeholder="Digite seu e-mail"
+                error={errors.email}
+              />
+            </ContactFormFields>
+
+            <ContactFormFields>
+              <Input
+                {...register('telephone')}
+                name="telephone"
+                label="Telefone*"
+                placeholder="Digite seu telefone"
+                error={errors.telephone}
+                type="number"
+              />
+              <Input
+                {...register('company')}
+                name="company"
+                label="Empresa"
+                placeholder="Digite o nome da sua empresa"
+                error={errors.company}
+              />
+            </ContactFormFields>
+
+            <ContactFormFields>
+              <TextArea
+                {...register('message')}
+                name="message"
+                label="Mensagem"
+                placeholder="Conte-nos um pouco sobre o projeto"
+              />
+            </ContactFormFields>
+
+            <button type="submit">
+              Enviar mensagem
+              <RiSendPlaneFill size="16" />
+            </button>
           </ContactForm>
 
           <ContactInformation>
@@ -77,6 +173,8 @@ export default function Contact(): JSX.Element {
                 </span>
               </ContactInformationListItem>
             </ContactInformationList>
+
+            <SharbeTechnology>Sharbe Tecnologia</SharbeTechnology>
           </ContactInformation>
         </ContactBox>
       </Container>

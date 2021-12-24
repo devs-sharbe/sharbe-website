@@ -29,6 +29,8 @@
     "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/no-empty-interface": "off",
     "no-use-before-define": "off",
+    "react/prop-types": "off",
+    "react/jsx-no-bind": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-unescaped-entities": "off",
     "jsx-a11y/anchor-is-valid": "off",
