@@ -1,21 +1,25 @@
-import { forwardRef, ForwardRefRenderFunction, useState } from 'react';
+import {
+  useState,
+  HTMLAttributes,
+  ForwardRefRenderFunction,
+  forwardRef,
+} from 'react';
 import { FieldError } from 'react-hook-form';
 
 import { ErrorMessage } from '../ErrorMessage';
 
 import { Container, Label, TextAreaElement } from './styles';
 
-interface ITextAreaProps {
+interface ITextAreaProps extends HTMLAttributes<HTMLTextAreaElement> {
   name: string;
   label: string;
   error?: FieldError;
-  placeholder: string;
 }
 
 const TextAreaBase: ForwardRefRenderFunction<
   HTMLTextAreaElement,
   ITextAreaProps
-> = ({ name, label, error = null, placeholder }, ref) => {
+> = ({ name, label, error = null, ...rest }, ref) => {
   const [isFilled, setIsFilled] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -24,9 +28,11 @@ const TextAreaBase: ForwardRefRenderFunction<
   }
 
   function handleOnBlur() {
-    const textAreaElement: any = document.getElementsByName(name);
+    const inputElement = document.getElementsByName(
+      name,
+    )[0] as HTMLTextAreaElement;
 
-    if (textAreaElement[0].value) {
+    if (inputElement.value) {
       setIsFilled(true);
     } else {
       setIsFilled(false);
@@ -39,10 +45,10 @@ const TextAreaBase: ForwardRefRenderFunction<
     <Container>
       <Label>{label}</Label>
       <TextAreaElement
+        {...rest}
         name={name}
         id={name}
         ref={ref}
-        placeholder={placeholder}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         isFilled={isFilled}

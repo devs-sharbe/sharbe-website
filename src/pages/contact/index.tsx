@@ -1,3 +1,5 @@
+import { useState, useCallback } from 'react';
+import { useRouter } from 'next/router';
 import { ThemeProvider } from 'styled-components';
 import {
   RiMailSendFill,
@@ -9,15 +11,19 @@ import {
 import { useForm, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from 'react-toastify';
 
-import { useCallback } from 'react';
 import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
 import { useTheme } from '@/hook/theme';
 
 import GlobalStyle from '@/styles/GlobalStyle';
 import { darkTheme, lightTheme } from '@/styles/theme/colors';
 
+import api from '@/services/api';
+import { Input } from '@/components/Form/Input';
+import { TextArea } from '@/components/Form/TextArea';
 import {
   Container,
   ContactBox,
@@ -29,15 +35,13 @@ import {
   ContactInformationListItem,
   SharbeTechnology,
 } from './styles';
-import { Footer } from '@/components/Footer';
-import { Input } from '@/components/Form/Input';
-import { TextArea } from '@/components/Form/TextArea';
 
 interface IContactFormData {
   name: string;
   email: string;
-  telefone: string;
+  telephone: string;
   company: string;
+  message: string;
 }
 
 const contactFormSchema = yup.object().shape({
@@ -54,24 +58,42 @@ const contactFormSchema = yup.object().shape({
     .required('Este campo é obrigatório')
     .min(10, 'Mínimo de 10 dígitos')
     .max(11, 'Máximo de 11 dígitos'),
+  message: yup.string(),
 });
 
 export default function Contact(): JSX.Element {
   const { themeSelected } = useTheme();
+  const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(contactFormSchema),
   });
 
+  const { errors, isSubmitting } = formState;
+
   const handleGetInTouch: SubmitHandler<IContactFormData> = useCallback(
-    values => {
-      console.log(values);
+    async values => {
+      try {
+        const formData = {
+          name: values.name.trim(),
+          email: values.email.trim(),
+          phone: values.telephone.trim(),
+          business: values.company.trim(),
+          description: values.message,
+        };
+
+        await toast.promise(api.post('contacts', formData), {
+          pending: 'Processando...',
+          success: 'Enviado com sucesso 👌',
+          error: 'Tente novamente mais tarde 🤯',
+        });
+
+        router.push('/');
+      } catch {
+        router.push('/');
+      }
     },
-    [],
+    [router],
   );
 
   return (
@@ -104,6 +126,7 @@ export default function Contact(): JSX.Element {
                 placeholder="Digite seu nome"
                 error={errors.name}
               />
+
               <Input
                 {...register('email')}
                 name="email"
@@ -122,11 +145,12 @@ export default function Contact(): JSX.Element {
                 error={errors.telephone}
                 type="number"
               />
+
               <Input
                 {...register('company')}
                 name="company"
                 label="Empresa"
-                placeholder="Digite o nome da sua empresa"
+                placeholder="Digite o nome da empresa"
                 error={errors.company}
               />
             </ContactFormFields>
@@ -137,12 +161,13 @@ export default function Contact(): JSX.Element {
                 name="message"
                 label="Mensagem"
                 placeholder="Conte-nos um pouco sobre o projeto"
+                error={errors.message}
               />
             </ContactFormFields>
 
-            <button type="submit">
-              Enviar mensagem
-              <RiSendPlaneFill size="16" />
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Processando...' : 'Enviar mensagem'}
+              {!isSubmitting && <RiSendPlaneFill size="16" />}
             </button>
           </ContactForm>
 

@@ -66,6 +66,10 @@ export const ContactForm = styled.form`
     > svg {
       margin-left: 1rem;
     }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 `;
 
@@ -80,6 +84,7 @@ export const ContactFormTitleContent = styled.div`
 
   > svg {
     margin-left: 0.75rem;
+    color: ${({ theme }) => theme.contact.title};
   }
 `;
 

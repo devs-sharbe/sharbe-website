@@ -74,8 +74,12 @@ export function Footer(): JSX.Element {
               name="themeSelect"
               onChange={handleSelectTheme}
             >
-              <option value="light">Claro</option>
-              <option value="dark">Escuro</option>
+              <option value="light" selected={themeSelected === 'light'}>
+                Claro
+              </option>
+              <option value="dark" selected={themeSelected === 'dark'}>
+                Escuro
+              </option>
             </select>
             <SelectIconRight>
               <RiArrowDownSLine size="24" />

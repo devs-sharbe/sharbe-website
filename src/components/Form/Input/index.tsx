@@ -1,20 +1,25 @@
-import { forwardRef, ForwardRefRenderFunction, useState } from 'react';
+import {
+  useState,
+  HTMLAttributes,
+  HTMLInputTypeAttribute,
+  ForwardRefRenderFunction,
+  forwardRef,
+} from 'react';
 import { FieldError } from 'react-hook-form';
 
 import { ErrorMessage } from '../ErrorMessage';
 
 import { Container, Label, InputElement } from './styles';
 
-interface IInputProps {
+interface IInputProps extends HTMLAttributes<HTMLInputElement> {
   name: string;
   label: string;
   error?: FieldError;
-  type?: string;
-  placeholder: string;
+  type?: HTMLInputTypeAttribute;
 }
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = (
-  { name, label, error = null, type = 'text', placeholder },
+  { name, label, error = null, type = 'text', ...rest },
   ref,
 ) => {
   const [isFilled, setIsFilled] = useState(false);
@@ -25,9 +30,11 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = (
   }
 
   function handleOnBlur() {
-    const inputElement: any = document.getElementsByName(name);
+    const inputElement = document.getElementsByName(
+      name,
+    )[0] as HTMLInputElement;
 
-    if (inputElement[0].value) {
+    if (inputElement.value) {
       setIsFilled(true);
     } else {
       setIsFilled(false);
@@ -40,11 +47,11 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = (
     <Container>
       <Label>{label}</Label>
       <InputElement
+        {...rest}
         name={name}
         id={name}
         ref={ref}
         type={type}
-        placeholder={placeholder}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         isFilled={isFilled}
