@@ -69,6 +69,8 @@ export const ContactForm = styled.form`
 
     &:disabled {
       cursor: not-allowed;
+      opacity: 0.9;
+      filter: brightness(0.7);
     }
   }
 `;

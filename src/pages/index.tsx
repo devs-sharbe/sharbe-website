@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   RiArrowRightLine,
   RiArrowRightUpLine,
   RiExternalLinkLine,
+  RiCheckLine,
   RiFileCopyLine,
 } from 'react-icons/ri';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { motion, AnimatePresence } from 'framer-motion';
 
 import { useTheme } from '@/hook/theme';
 
@@ -44,7 +44,6 @@ import {
   RepositoryDivisor,
   CodeBlock,
   CodeBlockTitleContent,
-  SuccessfullyCopied,
   CodeBlockCommandLine,
 } from '@/styles/home';
 
@@ -61,8 +60,18 @@ export default function Home(): JSX.Element {
   const [technologySelected, setTechnologySelected] =
     useState<ITechnologiesMenu>('backEnd');
 
+  const [githubLinkHasCopied, setGithubLinkHasCopied] = useState(false);
+
   function handleSelectTechnology(tech: ITechnologiesMenu) {
     setTechnologySelected(tech);
+  }
+
+  function handleCopyGithubLink() {
+    setGithubLinkHasCopied(true);
+
+    setTimeout(() => {
+      setGithubLinkHasCopied(false);
+    }, 3000);
   }
 
   return (
@@ -72,35 +81,19 @@ export default function Home(): JSX.Element {
       <Header />
       <Container>
         <HighlightSection>
-          <AnimatePresence>
-            <motion.h1
-              initial={{ translateY: -50, opacity: 0 }}
-              animate={{ translateY: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              exit={{ opacity: 0.5 }}
-            >
-              Projetos de software que{' '}
-              {themeSelected === 'light' ? <span>constroem</span> : 'constroem'}{' '}
-              o futuro
-            </motion.h1>
-          </AnimatePresence>
+          <h1>
+            Projetos de software que{' '}
+            {themeSelected === 'light' ? <span>constroem</span> : 'constroem'} o
+            futuro
+          </h1>
 
-          <motion.p
-            initial={{ translateY: -50, opacity: 0 }}
-            animate={{ translateY: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
+          <p>
             Utilizando tecnologias modernas do ecossistema Javascript para a
             construção de sites, sistemas web, aplicativos e testes
             automatizados.
-          </motion.p>
+          </p>
 
-          <Buttons
-            isLight={themeSelected === 'light'}
-            initial={{ translateY: -50, opacity: 0 }}
-            animate={{ translateY: 0, opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-          >
+          <Buttons isLight={themeSelected === 'light'}>
             <button type="button">Começar</button>
 
             <a>Nossos Projetos</a>
@@ -275,14 +268,16 @@ export default function Home(): JSX.Element {
 
                   <CopyToClipboard
                     text="https://github.com/devs-sharbe/sharbe-website.git"
-                    onCopy={() => console.log('copiou')}
+                    onCopy={handleCopyGithubLink}
                   >
                     <button type="button">
-                      <RiFileCopyLine size="16" />
+                      {githubLinkHasCopied ? (
+                        <RiCheckLine size="16" />
+                      ) : (
+                        <RiFileCopyLine size="16" />
+                      )}
                     </button>
                   </CopyToClipboard>
-
-                  <SuccessfullyCopied>Copiado!</SuccessfullyCopied>
                 </CodeBlockTitleContent>
 
                 <CodeBlockCommandLine>

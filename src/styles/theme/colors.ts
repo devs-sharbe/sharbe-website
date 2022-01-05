@@ -3,9 +3,12 @@ export const lightTheme = {
 
   logo_background: '#020305',
   logo_text: '#020305',
+  logo_text_contact_page: '#F0F0F0',
 
   title: '#100C08',
   title_highlight: '#0E4BEF',
+
+  header_github_link_contact_page: '#D2D2D2',
 
   button_color_primary: '#FFFFFF',
   button_color_secondary: '#100C08',
@@ -74,9 +77,12 @@ export const darkTheme = {
 
   logo_background: '#0E4BEF',
   logo_text: '#F0F0F0',
+  logo_text_contact_page: '#F0F0F0',
 
   title: '#F0F0F0',
   title_highlight: '#0E4BEF',
+
+  header_github_link_contact_page: '#656565',
 
   button_color_primary: '#F0F0F0',
   button_color_secondary: '#F0F0F0',

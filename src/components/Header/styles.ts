@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 import { fonts } from '@/styles/theme/fonts';
 
+interface ILogoProps {
+  isContactPage: boolean;
+}
+
 export const Container = styled.header`
   max-width: 1120px;
   margin: 0 auto;
@@ -16,11 +20,12 @@ export const Container = styled.header`
   justify-content: space-between;
 `;
 
-export const Logo = styled.a`
+export const Logo = styled.a<ILogoProps>`
   font-size: 1.5rem;
   font-family: ${fonts.secondary};
   font-weight: 700;
-  color: ${({ theme }) => theme.logo_text};
+  color: ${({ isContactPage, theme }) =>
+    isContactPage ? theme.logo_text_contact_page : theme.logo_text};
 
   display: flex;
   align-items: center;

@@ -12,7 +12,7 @@ export function Header(): JSX.Element {
   return (
     <Container>
       <Link href="/" passHref>
-        <Logo>
+        <Logo isContactPage={asPath === '/contact'}>
           <svg
             width="37"
             height="37"
@@ -65,7 +65,14 @@ export function Header(): JSX.Element {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <RiGithubFill size="24" color={theme.shape} />
+          <RiGithubFill
+            size="24"
+            color={
+              asPath === '/contact'
+                ? theme.header_github_link_contact_page
+                : theme.shape
+            }
+          />
         </a>
       </ContactContent>
     </Container>

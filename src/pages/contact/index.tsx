@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { ThemeProvider } from 'styled-components';
 import {
@@ -79,7 +79,7 @@ export default function Contact(): JSX.Element {
           email: values.email.trim(),
           phone: values.telephone.trim(),
           business: values.company.trim(),
-          description: values.message,
+          description: values.message.trim(),
         };
 
         await toast.promise(api.post('contacts', formData), {
@@ -166,8 +166,8 @@ export default function Contact(): JSX.Element {
             </ContactFormFields>
 
             <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Processando...' : 'Enviar mensagem'}
-              {!isSubmitting && <RiSendPlaneFill size="16" />}
+              Enviar mensagem
+              <RiSendPlaneFill size="16" />
             </button>
           </ContactForm>
 

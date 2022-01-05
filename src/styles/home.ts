@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { motion } from 'framer-motion';
 
 import { fonts } from './theme/fonts';
 
@@ -49,7 +48,7 @@ export const HighlightSection = styled.section`
   }
 `;
 
-export const Buttons = styled(motion.div)<ITheme>`
+export const Buttons = styled.div<ITheme>`
   display: flex;
   margin-top: 4rem;
 
@@ -444,11 +443,6 @@ export const CodeBlockTitleContent = styled.div`
     background-color: transparent;
     color: ${({ theme }) => theme.box_repository_code_block_title};
   }
-`;
-
-export const SuccessfullyCopied = styled.span`
-  position: absolute;
-  right: 32px;
 `;
 
 export const CodeBlockCommandLine = styled.div`
