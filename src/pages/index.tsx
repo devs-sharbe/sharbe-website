@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
 import { ThemeProvider } from 'styled-components';
 import {
   RiArrowRightLine,
@@ -8,6 +9,7 @@ import {
   RiFileCopyLine,
 } from 'react-icons/ri';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { scroller } from 'react-scroll';
 
 import { useTheme } from '@/hook/theme';
 
@@ -23,16 +25,15 @@ import {
   HighlightSection,
   Buttons,
   TechnologiesSection,
-  Heading,
-  Description,
   Technologies,
   TechnologiesList,
   TechnologiesListItem,
+  TechnologiesDescription,
   TechnologiesDivisor,
   MethodologiesSection,
   MethodologiesBoxes,
-  MethodologiesBoxLeft,
-  MethodologiesBoxRight,
+  MethodologiesBoxTop,
+  MethodologiesBoxBottom,
   MethodologiesDivisor,
   MethodologiesTopics,
   MethodologyTopic,
@@ -74,13 +75,17 @@ export default function Home(): JSX.Element {
     }, 3000);
   }
 
+  function handleScrollToTechnologiesSection() {
+    scroller.scrollTo('technologies-section', { duration: 700 });
+  }
+
   return (
     <ThemeProvider theme={themeSelected === 'light' ? lightTheme : darkTheme}>
       <GlobalStyle />
 
       <Header />
       <Container>
-        <HighlightSection>
+        <HighlightSection id="highlight-section">
           <h1>
             Projetos de software que{' '}
             {themeSelected === 'light' ? <span>constroem</span> : 'constroem'} o
@@ -94,21 +99,23 @@ export default function Home(): JSX.Element {
           </p>
 
           <Buttons isLight={themeSelected === 'light'}>
-            <button type="button">Começar</button>
+            <button type="button" onClick={handleScrollToTechnologiesSection}>
+              Começar
+            </button>
 
-            <a>Nossos Projetos</a>
+            {/* <a>Nossos Projetos</a> */}
           </Buttons>
         </HighlightSection>
 
-        <TechnologiesSection>
-          <Heading>
+        <TechnologiesSection name="technologies-section">
+          <h2>
             Sharbe Tecnologia<span>.</span>
-          </Heading>
-          <Description>
+          </h2>
+          <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s.
-          </Description>
+          </p>
 
           <Technologies>
             <TechnologiesList>
@@ -119,6 +126,16 @@ export default function Home(): JSX.Element {
                 >
                   Back-end
                 </button>
+
+                <TechnologiesDescription>
+                  <h3>Servidores de API com arquiteturas escaláveis</h3>
+                  <p>
+                    Construção de arquiteturas escaláveis, simples e completas
+                    utilizando Node.js, um ambiente de tempo de execução
+                    JavaScript no lado do servidor. Acompanhado de frameworks do
+                    mercado como Express.js e Adonis.js.
+                  </p>
+                </TechnologiesDescription>
               </TechnologiesListItem>
               <TechnologiesDivisor />
               <TechnologiesListItem active={technologySelected === 'frontEnd'}>
@@ -128,6 +145,16 @@ export default function Home(): JSX.Element {
                 >
                   Front-end
                 </button>
+
+                <TechnologiesDescription>
+                  <h3>Intregrações Back-end e arquitetura Jamstack</h3>
+                  <p>
+                    Construção, implantação e escalonamento de projetos
+                    Front-End web modernos, utilizando grandes bibliotecas do
+                    mercado como React, ChakraUI, MUI junto a frameworks como
+                    Next.js.
+                  </p>
+                </TechnologiesDescription>
               </TechnologiesListItem>
               <TechnologiesDivisor />
               <TechnologiesListItem active={technologySelected === 'mobile'}>
@@ -137,6 +164,16 @@ export default function Home(): JSX.Element {
                 >
                   Mobile
                 </button>
+
+                <TechnologiesDescription>
+                  <h3>Aplicativos modernos e reativos multiplataforma</h3>
+                  <p>
+                    Desenvolvimento de aplicações mobile modernas e reativas
+                    tanto para iOS quanto para Android de forma nativa
+                    utilizando React Native, uma biblioteca React para
+                    desenvolvimento nativo.
+                  </p>
+                </TechnologiesDescription>
               </TechnologiesListItem>
               <TechnologiesDivisor />
               <TechnologiesListItem active={technologySelected === 'deploy'}>
@@ -146,6 +183,16 @@ export default function Home(): JSX.Element {
                 >
                   Deploy
                 </button>
+
+                <TechnologiesDescription>
+                  <h3>Implantação de projetos em produção e CI/CD</h3>
+                  <p>
+                    Implantação de projetos nas principais plataformas como
+                    Heroku, Digital Ocean, AWS, Vercel, Netlify, entre outras.
+                    Além de automatização desses processos e integração contínua
+                    utilizando Github Actions.
+                  </p>
+                </TechnologiesDescription>
               </TechnologiesListItem>
               <TechnologiesDivisor />
               <TechnologiesListItem
@@ -157,6 +204,16 @@ export default function Home(): JSX.Element {
                 >
                   Automated Tests
                 </button>
+
+                <TechnologiesDescription>
+                  <h3>Testes automatizados aplicados à QA e TDD</h3>
+                  <p>
+                    Construção e desenvolvimento de testes automatizados para
+                    softwares já em funcionamento ou em processo de
+                    desenvolvimento utilizando ferramentas como Jest, Japa e
+                    Cypress com Cucumber (BDD).
+                  </p>
+                </TechnologiesDescription>
               </TechnologiesListItem>
             </TechnologiesList>
 
@@ -166,25 +223,25 @@ export default function Home(): JSX.Element {
 
         <MethodologiesSection>
           <MethodologiesBoxes>
-            <MethodologiesBoxLeft>
+            <MethodologiesBoxTop>
               <h2>
                 Um projeto <span>não é feito</span> apenas de código
               </h2>
 
-              <div>
-                <button type="button">Entrar em contato</button>
-                <a>
-                  Veja nossos projetos <RiArrowRightLine size="24" />
-                </a>
-              </div>
-            </MethodologiesBoxLeft>
-
-            <MethodologiesBoxRight>
               <p>
                 O sucesso de qualquer projeto voltado à elaboração de software
                 depende diretamente da escolha da metodologia mais adequada.
               </p>
-            </MethodologiesBoxRight>
+            </MethodologiesBoxTop>
+
+            <MethodologiesBoxBottom>
+              <Link href="/contact">
+                <a>Entrar em contato</a>
+              </Link>
+              {/* <a>
+                Veja nossos projetos <RiArrowRightLine size="24" />
+              </a> */}
+            </MethodologiesBoxBottom>
           </MethodologiesBoxes>
 
           <MethodologiesDivisor />
@@ -258,7 +315,7 @@ export default function Home(): JSX.Element {
               <RepositoryDivisor />
 
               <span>
-                Certifique-se de ter o Git e o Node.js na versão 14 instalados
+                Certifique-se de ter o Git e o Node.js na versão 16 instalados
                 em sua máquina:
               </span>
 
@@ -267,10 +324,10 @@ export default function Home(): JSX.Element {
                   <span># Clone este repositório usando https</span>
 
                   <CopyToClipboard
-                    text="https://github.com/devs-sharbe/sharbe-website.git"
+                    text="git clone https://github.com/devs-sharbe/sharbe-website.git"
                     onCopy={handleCopyGithubLink}
                   >
-                    <button type="button">
+                    <button type="button" disabled={githubLinkHasCopied}>
                       {githubLinkHasCopied ? (
                         <RiCheckLine size="16" />
                       ) : (

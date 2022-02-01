@@ -34,6 +34,24 @@ export const Container = styled.div`
 
     margin-top: 2rem;
   }
+
+  @media (max-width: 992px) {
+    max-width: 600px;
+
+    h3 {
+      font-size: 2.5rem;
+      line-height: 3.25rem;
+    }
+
+    p {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const TechnologiesIcons = styled.div`

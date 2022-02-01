@@ -55,4 +55,19 @@ export const TextAreaElement = styled.textarea<ITextAreaElementProps>`
   &:hover {
     border-color: ${({ theme }) => theme.contact.shape_active};
   }
+
+  &::-webkit-scrollbar {
+    width: 20px;
+    height: 100%;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: red;
+    border-radius: 0.75rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.75rem;
+    background-color: pink;
+  }
 `;

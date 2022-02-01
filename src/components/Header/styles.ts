@@ -18,6 +18,10 @@ export const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 1200px) {
+    padding: 0 1.5rem;
+  }
 `;
 
 export const Logo = styled.a<ILogoProps>`
@@ -32,6 +36,12 @@ export const Logo = styled.a<ILogoProps>`
 
   > svg {
     margin-right: 1rem;
+  }
+`;
+
+export const LogoText = styled.span`
+  @media (max-width: 425px) {
+    display: none;
   }
 `;
 
@@ -50,6 +60,14 @@ export const ContactContent = styled.div`
       &:hover {
         filter: brightness(0.9);
       }
+    }
+  }
+
+  a {
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.9);
     }
   }
 `;

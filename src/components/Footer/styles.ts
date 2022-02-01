@@ -5,12 +5,20 @@ import { fonts } from '@/styles/theme/fonts';
 export const Container = styled.footer`
   max-width: 1120px;
   margin: 17.5rem auto 0;
+
+  @media (max-width: 1200px) {
+    padding: 0 1.5rem;
+  }
 `;
 
 export const SocialNetworksAndPolicies = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+  }
 `;
 
 export const SocialNetworks = styled.div`
@@ -33,6 +41,16 @@ export const Policies = styled.div`
       margin-left: 1rem;
     }
   }
+
+  @media (max-width: 425px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    a:first-child {
+      margin: 1rem 0;
+    }
+  }
 `;
 
 export const Divisor = styled.div`
@@ -40,6 +58,10 @@ export const Divisor = styled.div`
   height: 1px;
   margin: 0.625rem 0 2rem;
   background-color: ${({ theme }) => theme.divisor};
+
+  @media (max-width: 425px) {
+    margin-top: 2rem;
+  }
 `;
 
 export const BusinessAndTheme = styled.div`
@@ -47,11 +69,18 @@ export const BusinessAndTheme = styled.div`
 
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const Business = styled.div`
   display: flex;
   align-items: center;
+
+  margin-right: 1rem;
 
   span {
     font-size: 1.25rem;
@@ -64,8 +93,18 @@ export const Business = styled.div`
     font-size: 0.9375rem;
     font-family: ${fonts.primary};
     color: ${({ theme }) => theme.shape};
-
+    line-height: 1.25rem;
     margin-left: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-right: unset;
+
+    p {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
   }
 `;
 

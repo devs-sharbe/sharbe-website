@@ -7,6 +7,7 @@ import {
   RiArrowUpSLine,
   RiArrowDownSLine,
 } from 'react-icons/ri';
+import { animateScroll as scroll } from 'react-scroll';
 
 import { useTheme } from '@/hook/theme';
 
@@ -34,6 +35,10 @@ export function Footer(): JSX.Element {
     handleChangeTheme(theme);
   }
 
+  function handleScrollToTop() {
+    scroll.scrollToTop({ duration: 0 });
+  }
+
   return (
     <Container>
       <SocialNetworksAndPolicies>
@@ -54,8 +59,8 @@ export function Footer(): JSX.Element {
         <Business>
           <span>Sharbe Tecnologia.</span>
           <p>
-            Copyright &copy; {new Date(Date.now()).getFullYear()} Sharbe
-            Tecnologia LTDA. Todos os direitos reservados.{' '}
+            Copyright &copy; {new Date().getFullYear()} Sharbe Tecnologia LTDA.
+            Todos os direitos reservados.{' '}
           </p>
         </Business>
 
@@ -83,7 +88,7 @@ export function Footer(): JSX.Element {
             </SelectIconRight>
           </SelectContent>
           {/* </label> */}
-          <UpButton type="button">
+          <UpButton type="button" onClick={handleScrollToTop}>
             <RiArrowUpSLine size="24" />
           </UpButton>
         </Theme>

@@ -194,7 +194,7 @@ export default function Contact(): JSX.Element {
               <ContactInformationListItem>
                 <span>
                   <RiInformationFill size="24" />
-                  Segunda à sexta, 09 às 17h
+                  Segunda à sexta, 09h às 17h
                 </span>
               </ContactInformationListItem>
             </ContactInformationList>

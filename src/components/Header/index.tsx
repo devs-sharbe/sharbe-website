@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useTheme } from 'styled-components';
 import { RiGithubFill } from 'react-icons/ri';
 
-import { Container, Logo, ContactContent } from './styles';
+import { Container, Logo, LogoText, ContactContent } from './styles';
 
 export function Header(): JSX.Element {
   const theme = useTheme();
@@ -47,7 +47,7 @@ export function Header(): JSX.Element {
               fill="#F0F0F0"
             />
           </svg>
-          Sharbe
+          <LogoText>Sharbe</LogoText>
         </Logo>
       </Link>
 
@@ -61,7 +61,7 @@ export function Header(): JSX.Element {
         )}
 
         <a
-          href="https://github.com/viniciusmendite"
+          href="https://github.com/devs-sharbe"
           target="_blank"
           rel="noopener noreferrer"
         >
