@@ -30,6 +30,8 @@ import {
   ContactForm,
   ContactFormTitleContent,
   ContactFormFields,
+  Divisor,
+  GetInTouchWhatsapp,
   ContactInformation,
   ContactInformationList,
   ContactInformationListItem,
@@ -169,6 +171,19 @@ export default function Contact(): JSX.Element {
               Enviar mensagem
               <RiSendPlaneFill size="16" />
             </button>
+
+            <Divisor />
+
+            <GetInTouchWhatsapp>
+              <a
+                href="https://wa.me/message/EQ5C5O6G7RGXH1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <RiWhatsappFill size="24" />
+                Chamar no whatsapp
+              </a>
+            </GetInTouchWhatsapp>
           </ContactForm>
 
           <ContactInformation>

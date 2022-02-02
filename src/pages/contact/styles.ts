@@ -30,6 +30,25 @@ export const Container = styled.main`
       max-width: 700px;
       margin-top: 2rem;
     }
+
+    @media (max-width: 992px) {
+      h1 {
+        font-size: 3rem;
+        max-width: 500px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+        max-width: 460px;
+        padding: 0 1.5rem;
+      }
+
+      p {
+        padding: 0 1.5rem;
+      }
+    }
   }
 `;
 
@@ -41,6 +60,10 @@ export const ContactBox = styled.div`
   display: flex;
 
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.08);
+
+  @media (max-width: 1200px) {
+    max-width: calc(100vw - 1.5rem);
+  }
 `;
 
 export const ContactForm = styled.form`
@@ -73,6 +96,43 @@ export const ContactForm = styled.form`
       filter: brightness(0.7);
     }
   }
+
+  @media (max-width: 1092px) {
+    width: 660px;
+  }
+
+  @media (max-width: 1057px) {
+    width: 600px;
+  }
+
+  @media (max-width: 992px) {
+    width: 560px;
+  }
+
+  @media (max-width: 913px) {
+    width: 480px;
+  }
+
+  @media (max-width: 854px) {
+    width: 440px;
+  }
+
+  @media (max-width: 801px) {
+    width: 420px;
+  }
+
+  @media (max-width: 782px) {
+    width: 390px;
+  }
+
+  @media (max-width: 755px) {
+    width: 380px;
+  }
+
+  @media (max-width: 740px) {
+    width: 100%;
+    border-radius: 0.75rem;
+  }
 `;
 
 export const ContactFormTitleContent = styled.div`
@@ -88,21 +148,85 @@ export const ContactFormTitleContent = styled.div`
     margin-left: 0.75rem;
     color: ${({ theme }) => theme.contact.title};
   }
+
+  @media (max-width: 913px) {
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  @media (max-width: 782px) {
+    align-items: center;
+  }
+
+  @media (max-width: 740px) {
+    align-items: unset;
+  }
+
+  @media (max-width: 432px) {
+    align-items: center;
+  }
 `;
 
 export const ContactFormFields = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 2rem;
+
+  @media (max-width: 913px) {
+    flex-direction: column;
+    margin-top: unset;
+
+    label {
+      margin-top: 1.5rem;
+    }
+
+    > div {
+      width: 100%;
+    }
+  }
+`;
+
+export const Divisor = styled.div`
+  display: none;
+  width: 100%;
+  height: 1px;
+  margin: 2rem 0;
+  background-color: ${({ theme }) => theme.divisor};
+
+  @media (max-width: 740px) {
+    display: block;
+  }
+`;
+
+export const GetInTouchWhatsapp = styled.div`
+  display: none;
+  justify-content: center;
+
+  a {
+    display: flex;
+    align-items: center;
+
+    font-size: 1rem;
+    font-family: ${fonts.primary}, sans-serif;
+    color: ${({ theme }) => theme.contact.get_in_touch_whatsapp};
+
+    > svg {
+      margin-right: 0.75rem;
+    }
+  }
+
+  @media (max-width: 740px) {
+    display: flex;
+  }
 `;
 
 export const ContactInformation = styled.div`
   position: relative;
   overflow: hidden;
 
+  flex: 1;
   background-color: ${({ theme }) => theme.contact.blue};
-  width: 100%;
-  max-width: 420px;
   padding: 3rem 2rem;
   border-radius: 0 0.75rem 0.75rem 0;
 
@@ -110,6 +234,10 @@ export const ContactInformation = styled.div`
     font-size: 1.5rem;
     font-family: ${fonts.secondary}, sans-serif;
     color: ${({ theme }) => theme.contact.heading};
+  }
+
+  @media (max-width: 740px) {
+    display: none;
   }
 `;
 

@@ -69,6 +69,7 @@ export const lightTheme = {
     button_background: '#151228',
     button_color: '#FFFFFF',
     sharbe_technology: '#2948C5',
+    get_in_touch_whatsapp: '#100C08',
   },
 };
 
@@ -143,5 +144,6 @@ export const darkTheme = {
     button_background: '#1F3FC3',
     button_color: '#FFFFFF',
     sharbe_technology: '#2948C5',
+    get_in_touch_whatsapp: '#F0F0F0',
   },
 };

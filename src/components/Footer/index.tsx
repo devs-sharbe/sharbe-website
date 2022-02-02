@@ -65,7 +65,6 @@ export function Footer(): JSX.Element {
         </Business>
 
         <Theme>
-          {/* <label htmlFor="themeSelect"> */}
           <SelectContent>
             <SelectIconLeft>
               {themeSelected === 'light' ? (
@@ -87,7 +86,6 @@ export function Footer(): JSX.Element {
               <RiArrowDownSLine size="24" />
             </SelectIconRight>
           </SelectContent>
-          {/* </label> */}
           <UpButton type="button" onClick={handleScrollToTop}>
             <RiArrowUpSLine size="24" />
           </UpButton>

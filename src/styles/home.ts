@@ -382,7 +382,7 @@ export const MethodologiesBoxTop = styled.div`
 
 export const MethodologiesBoxBottom = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 3rem;
 
   a:first-child {
@@ -406,7 +406,7 @@ export const MethodologiesBoxBottom = styled.div`
   a {
     display: flex;
     align-items: center;
-    margin-left: 2.875rem;
+    /* margin-left: 2.875rem; */
 
     font-size: 1rem;
     font-family: ${fonts.tertiary};
