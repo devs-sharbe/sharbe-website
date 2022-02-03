@@ -36,7 +36,7 @@ import {
   ContactInformationList,
   ContactInformationListItem,
   SharbeTechnology,
-} from './styles';
+} from '@/styles/contact';
 
 interface IContactFormData {
   name: string;
