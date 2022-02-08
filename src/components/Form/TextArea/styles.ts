@@ -56,7 +56,7 @@ export const TextAreaElement = styled.textarea<ITextAreaElementProps>`
     border-color: ${({ theme }) => theme.contact.shape_active};
   }
 
-  &::-webkit-scrollbar {
+  /* &::-webkit-scrollbar {
     width: 20px;
     height: 100%;
   }
@@ -69,5 +69,5 @@ export const TextAreaElement = styled.textarea<ITextAreaElementProps>`
   &::-webkit-scrollbar-thumb {
     border-radius: 0.75rem;
     background-color: pink;
-  }
+  } */
 `;

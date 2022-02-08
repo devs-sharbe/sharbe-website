@@ -24,7 +24,6 @@ function ThemeProvider({ children }: IThemeProvider): JSX.Element {
 
   useEffect(() => {
     const { 'sharbewebsite.theme': theme } = parseCookies() as any;
-    console.log('theme:', theme);
 
     if (theme) {
       setThemeSelected(theme);
